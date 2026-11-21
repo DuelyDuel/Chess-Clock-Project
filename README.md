@@ -6,6 +6,9 @@ a pawn's value is statistically indistinguishable from zero, so the clock decide
 Player strength amplifies this: with 20–40 seconds left, a pawn is worth roughly 7–12 seconds to
 2000+ players but under 2 seconds to players rated below 1500.
 
+*Throughout, "a pawn" means a 1.0 (100-centipawn) advantage in the engine evaluation, not literally
+an extra pawn of material. A gambit can leave a player a pawn down with an equal evaluation.*
+
 ![Seconds per pawn by clock level](seconds_per_pawn.png)
 
 ## Question
@@ -82,6 +85,12 @@ Each step up is statistically distinct (no neighboring intervals overlap). The 4
 large but imprecise: with plenty of time on both clocks, small clock differences barely matter,
 so the clock's effect is hard to measure.
 
+Both weights move as the clocks get low: the weight on each second rises and the weight on the
+eval falls. Comparing the middlegame and endgame models (endgames happen at lower clocks), the
+clock weight was about 2.4× larger in endgames while the eval weight was only about a third
+smaller, so most of that drop came from seconds becoming more valuable, not from the pawn
+becoming less valuable.
+
 ### 2. Stronger players get more out of a pawn
 
 ![Seconds per pawn by rating group](by_rating.png)
@@ -97,13 +106,14 @@ Endgames first showed a pawn worth only 0.7 seconds vs. 2.5 in middlegames. But 
 middlegames showed the same drop (0.5 seconds), so endgames looked different mainly because
 they happen when clocks are low.
 
-### 4. The model holds up on unseen games
+### 4. The win-probability model is well calibrated on unseen games
 
 ![Calibration on held-out games](calibration.png)
 
 On the 20% of games held out from training, predicted win probabilities match actual results
 within about 4 percentage points in every bucket. The model is slightly underconfident in the
-60–90% range.
+60–90% range. (This checks the win-probability predictions; the seconds-per-pawn estimates
+themselves come from the training games.)
 
 ### Robustness
 
@@ -141,3 +151,8 @@ values in the 10–40s bins shifting by roughly 10–15%.
 3. Update the file paths at the top of `extraction.py` and `model.py` for your machine.
 4. Run `python extraction.py` (~10 minutes) to build `positions_full.csv`.
 5. Run `python model.py` to print the results and save the three charts.
+
+## Note on tools
+
+The code was written with AI assistance. The question, study design, predictions, and
+interpretation of the results are my own.
