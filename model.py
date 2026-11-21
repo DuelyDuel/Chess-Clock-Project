@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # ---------- Settings ----------
 DATA_PATH = "C:/Users/Duelz/positions_full.csv"
 EVAL_CUTOFF = 300      # "close" positions: within ±3 pawns
-BOOT_ROUNDS = 500      # bootstrap rounds (raise to 500 for final results)
+BOOT_ROUNDS = 500      # bootstrap rounds 
 BINS = [(0, 10), (10, 20), (20, 30), (30, 40), (40, 61)]
 LABELS = ["0-10s", "10-20s", "20-30s", "30-40s", "40s+"]
 FORMULA = "white_win ~ eval_capped + clock_diff + rating_diff"
