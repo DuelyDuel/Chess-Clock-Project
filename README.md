@@ -148,8 +148,8 @@ values in the 10–40s bins shifting by roughly 10–15%.
 1. Install dependencies: `pip install chess zstandard pandas numpy statsmodels matplotlib`
 2. Download `lichess_db_standard_rated_2017-04.pgn.zst` from
    [database.lichess.org](https://database.lichess.org) into this folder.
-3. Update the file paths at the top of `extraction.py` and `model.py` for your machine.
-4. Run `python extraction.py` (~10 minutes) to build `positions_full.csv`.
+3. Run `python extraction.py` (~10 minutes) to build `positions_full.csv`.
+4. Set `DATA_PATH` at the top of `model.py` to wherever `positions_full.csv` was saved.
 5. Run `python model.py` to print the results and save the three charts.
 
 ## Note on tools
